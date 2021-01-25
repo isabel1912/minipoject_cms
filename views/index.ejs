@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			<%= title %>
+		</title>
+		<link rel="stylesheet" href="css/common.css">
+		<script src="javascripts/axios.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg">
+		<div>
+			<h1>
+				<%= title %>
+			</h1>
+			<label>
+				头图上传：<input type="file" name="" id="uploadBtn" value="" />
+			</label>
+		</div>
+		<script type="text/javascript">
+			var uploadBtn = document.getElementById('uploadBtn')
+			uploadBtn.onchange = function(ev) {
+				var file = ev.target.files[0]
+				var param = new FormData()
+				param.append('file', file)
+				var config = {
+					header: {
+						'Content-Type': 'multipart/form-data'
+					}
+				}
+
+				axios.post('/uploadBannerImg', param, config).then((res) => {
+					console.log(res.data)
+				})
+			}
+		</script>
+	</body>
+</html>
